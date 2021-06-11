@@ -1,0 +1,25 @@
+* SPICE3 file created from /home/sristi/inverter.ext - technology: scmos
+.lib /project2020/eda/ngspice-32/models/scn4m_subm/scmos_bsim4.lib nom
+
+M1000 out in vdd vdd scmosp w=1.8u l=0.4u
++  ad=4.32p pd=8.4u as=2.52p ps=6.4u
+M1001 out in gnd gnd scmosn w=1.2u l=0.4u
++  ad=2.64p pd=6.8u as=1.68p ps=5.2u
+C0 in vdd 0.28fF
+C1 vdd out 0.14fF
+C2 out gnd 0.11fF
+C3 in gnd 0.23fF
+C4 vdd gnd 2.50fF
+.temp 27
+.param vsupply=2.
+.global vdd gnd
+Vsup vdd 0 2.5
+vin in gnd pulse 0 2.5 10n 10p 5n 10n
+.tran 5p 50n
+.control
+run
+plot v(in)+3 v(out)
+.endc
+.op
+.end
+
